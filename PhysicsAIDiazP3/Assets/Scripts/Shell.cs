@@ -5,6 +5,14 @@ using UnityEngine;
 public class Shell : MonoBehaviour
 {
     public GameObject explosion;
+    float speed = 0f;
+    float ySpeed = 0f;
+    float mass = 1;
+    float force = 15;
+    float acceleration;
+    float gravity = -1f;
+    float gAccel;
+    float drag = 1;
 
     void OnCollisionEnter(Collision col)
     {
@@ -19,12 +27,17 @@ public class Shell : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        acceleration = force / mass;
+        speed += acceleration * 1;
+        gAccel = gravity / mass;
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
+        speed *= (1 - Time.deltaTime * drag);
+        ySpeed += gAccel * Time.deltaTime;
+        this.transform.Translate(0, ySpeed, speed * Time.deltaTime);
 
     }
 }
