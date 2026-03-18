@@ -10,13 +10,13 @@ public class Shell : MonoBehaviour
     float mass = 1;
     float force = 15;
     float acceleration;
-    float gravity = -1f;
+    float gravity = -9.8f;
     float gAccel;
     float drag = 1;
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "tank")
+        if (col.gameObject.tag == "tank2")
         {
             GameObject exp = Instantiate(explosion, this.transform.position, Quaternion.identity);
             Destroy(exp, 0.5f);
